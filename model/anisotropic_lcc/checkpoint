@@ -1,0 +1,2 @@
+model_checkpoint_path: "/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/checkpoints/deep_encoder/rf/model_15_100.ckpt"
+all_model_checkpoint_paths: "/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/checkpoints/deep_encoder/rf/model_15_100.ckpt"

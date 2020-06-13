@@ -1,0 +1,2 @@
+model_checkpoint_path: "/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/checkpoints/supervised6/model_15_100_1e-06_norm.ckpt"
+all_model_checkpoint_paths: "/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/checkpoints/supervised6/model_15_100_1e-06_norm.ckpt"
