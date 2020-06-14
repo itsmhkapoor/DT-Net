@@ -61,7 +61,7 @@ def _tf_fspecial_gauss(sizex, sizey, sigma):
     g = tf.exp(-((x**2 + y**2)/(2.0*sigma**2)))
     return g / tf.reduce_sum(g)
 
-def tf_lcc(img1, img2, mean_metric=True, sizex=5, sizey=155, sigma=1.5, deps=1e-4):
+def tf_lcc(img1, img2, mean_metric=True, sizex=155, sizey=5, sigma=1.5, deps=1e-4):
     window = _tf_fspecial_gauss(sizex, sizey, sigma) # window shape [sizex, sizey]
     
     mu1 = tf.nn.conv2d(img1, window, strides=[1,1,1,1], padding='VALID')
@@ -135,7 +135,7 @@ with tf.Session() as sess:
             c_valid = sess.run(cost, feed_dict = {interpolator['x1']: val_x1, interpolator['x2']: val_x2})
             print('Iteration', step, 'valid_loss:', c_valid)
             fvals_valid.append(c_valid)
-            save_path = saver.save(sess, f'{path_model}/model_{batch_size}_{hm_epochs}_inv.ckpt')
+            save_path = saver.save(sess, f'{path_model}/model_{batch_size}_{hm_epochs}.ckpt')
 
     print('Training done!')
     # Plot Loss curves
@@ -144,7 +144,7 @@ with tf.Session() as sess:
     plt.plot(fvals_valid, label='Validation loss')
     plt.ylabel('Loss')
     plt.legend()
-    plt.savefig(f'{path_model}/loss_{batch_size}_{hm_epochs}_inv.png', bbox_inches='tight')
+    plt.savefig(f'{path_model}/loss_{batch_size}_{hm_epochs}.png', bbox_inches='tight')
     # Save final model
-    save_path = saver.save(sess, f'{path_model}/model_{batch_size}_{hm_epochs}_inv.ckpt')
+    save_path = saver.save(sess, f'{path_model}/model_{batch_size}_{hm_epochs}.ckpt')
     print("Model saved in path: %s" % save_path)
