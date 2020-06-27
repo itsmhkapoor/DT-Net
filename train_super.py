@@ -130,7 +130,7 @@ def readValLabels(path_train):
 
 interpolator = model_new_super.forward(image_size)
 ############### SELECT LOSS FUNCTION ###############
-cost = tf.reduce_mean(tf.square(interpolator['flow'] - label))
+cost = tf.reduce_mean(tf.reduce_sum(tf.square(interpolator['flow'] - label), axis=[1,2,3]))
 smooth_loss = interpolator['smooth']
 
 optimizer = tf.train.AdamOptimizer(learning_rate = lr).minimize(cost) 
