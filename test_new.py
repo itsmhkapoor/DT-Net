@@ -19,7 +19,7 @@ config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
 
 path = '/srv/beegfs02/scratch/sosrecon/data/MS_mel_aug/test_images'
-path_results = '/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/examples/deep/'
+path_results = '/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/results/test/'
 
 #Normalization parameters (98%) calculated once using norm_para.py
 amin = -0.024139404296875

@@ -20,7 +20,7 @@ config.gpu_options.allow_growth = True
 
 path = '/srv/beegfs02/scratch/sosrecon/data/test6'
 path_labels = '/srv/beegfs02/scratch/sosrecon/data/test6_labels'
-path_results = '/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/results/super/l2/'
+path_results = '/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/results/test/'
 
 N=32
 t = 1
@@ -45,16 +45,16 @@ def readLabels(path_train):
 tf.set_random_seed(1.0)
 
 # Define normalization parameters 98% (middle)
-amin = -0.024139404296875
-amax = 0.024139404296875
-lmax = 2.9453125
-lmin = -2.783203125
+#amin = -0.024139404296875
+#amax = 0.024139404296875
+#lmax = 2.9453125
+#lmin = -2.783203125
 
 # Define normalization parameters 98% for 6 channel
-#amin = -0.0225067138671875
-#amax = 0.0225830078125
-#lmax = 1.7041015625
-#lmin = -1.6630859375
+amin = -0.0225067138671875
+amax = 0.0225830078125
+lmax = 1.7041015625
+lmin = -1.6630859375
 """
 create graph
 """
