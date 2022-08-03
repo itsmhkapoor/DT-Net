@@ -1,5 +1,5 @@
 # DT-Net
-
+Explain network.
 2 training approaches.
 - "new" is unsupervised using anisotropic LCC loss using middle channel.
 - "super" is supervised training using all 6 channels.
