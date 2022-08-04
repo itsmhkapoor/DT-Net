@@ -7,28 +7,29 @@ Execute the following command to install dependencies.
 pip install -r requirements.txt
 ```
 
-## Dataset description
+## Dataset 
 The network is trained and evaluated on a private dataset of beamformed RF frames. RF data from 6 channel pairs is available in the dataset. Pseudo ground truth displacements for each channel pair are available which are used in supervised training.
 
 ## Model
 2 versions of DT-Net are available 
-- DT-NetE (for unsupervised training) 
+- DT-NetE (for unsupervised training) defined in `model_new.py`
 <p align="center">
   <img src="assets/unsuper_arch.jpg" width="700">
 </p>
-- DT-NetS (for supervised training)
+
+- DT-NetS (for supervised training) defined in `model_new_super.py`
 <p align="center">
   <img src="assets/super_arch.jpg" width="700">
 </p>
 
-## 2 training approaches.
-- "new" is unsupervised using anisotropic LCC loss using middle channel.
-- "super" is supervised training using all 6 channels.
+## Training Approaches
 
-The folder "model" has the pretrained models with the corresponding loss functions.
+- `train_new.py` is unsupervised training with anisotropic LCC loss using middle channel.
+- `train_super.py` is supervised training using all 6 channels.
 
-Use norm_para.py script for finding the normalization parameters of the dataset.
+The `norm_para.py` script was used for finding the normalization parameters of the dataset.
 
-Testing 
-- "test_new" is used for testing results using LCC loss (unsupervised).
-- "test_super" is used for supervised model (using pseudo displacement fields)
+## Testing 
+
+- `test_new.py` is used for testing results using LCC loss (unsupervised).
+- `test_super.py` is used for supervised model (using pseudo displacement fields)
