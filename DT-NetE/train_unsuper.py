@@ -6,7 +6,7 @@ mkapoor@student.ethz.ch
 """
 
 import tensorflow as tf
-import model_new
+import model_unsuper
 import numpy as np
 import scipy.io
 import math
@@ -20,9 +20,9 @@ N_val = batch_size
 normalize = True
 image_size = [None, 1329, 253, 1]
 
-path_train = '/srv/beegfs02/scratch/sosrecon/data/MS_mel_aug/MS_mel_aug_rf'
-path_val = '/srv/beegfs02/scratch/sosrecon/data/MS_mel_aug/val_images'
-path_model = '/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/checkpoints/deep_encoder/rf'
+path_train = 'path/to/train/images'
+path_val = 'path/to/val/images'
+path_model = 'path/to/save/model/ckpt'
 
 #Normalization parameters (98%) calculated once using norm_para.py
 amin = -0.024139404296875
@@ -101,7 +101,7 @@ def readImages_val(path_val):
     return np.array(train_x1), np.array(train_x2)
         
 
-interpolator = model_new.forward(image_size, batch_size)
+interpolator = model_unsuper.forward(image_size, batch_size)
 cost = tf_lcc(interpolator['y1'], interpolator['x1'])
 optimizer = tf.train.AdamOptimizer(learning_rate = lr).minimize(cost)
 init_op = tf.global_variables_initializer()

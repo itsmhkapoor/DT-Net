@@ -6,7 +6,7 @@ mkapoor@student.ethz.ch
 """
 
 import tensorflow as tf
-import model_new_super
+import model_super
 import numpy as np
 import scipy.io
 import math
@@ -32,11 +32,11 @@ label_size = [None, 84,64, 1]
 
 label = tf.placeholder(tf.float32, label_size)
 
-path_train = '/srv/beegfs02/scratch/sosrecon/data/train_mat'
-path_val = '/srv/beegfs02/scratch/sosrecon/data/val6'
-path_labels = '/srv/beegfs02/scratch/sosrecon/data/train_labels'
-path_val_labels = '/srv/beegfs02/scratch/sosrecon/data/val6'
-path_model = '/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/checkpoints/supervised6'
+path_train = 'path/to/train/images'
+path_val = 'path/to/val/images'
+path_labels = 'path/to/train/labels'
+path_val_labels = 'path/to/val/labels'
+path_model = 'path/to/save/model/ckpt'
 #model_dir = '/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/logs'
 
 # here shows you how to relate iterations to epochs
@@ -128,7 +128,7 @@ def readValLabels(path_train):
 
 ############### CODE STARTS HERE ###############
 
-interpolator = model_new_super.forward(image_size)
+interpolator = model_super.forward(image_size)
 ############### SELECT LOSS FUNCTION ###############
 cost = tf.reduce_mean(tf.reduce_sum(tf.square(interpolator['flow'] - label), axis=[1,2,3]))
 smooth_loss = interpolator['smooth']
@@ -139,7 +139,7 @@ saver = tf.train.Saver()
 with tf.Session() as sess:
 
     if init_from_saved_model:
-        saver.restore(sess, "/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/checkpoints/supervised/RF/l2/model_15_50_1e-06_norm.ckpt")
+        saver.restore(sess, "path/to/.ckpt")
     else:
         sess.run(tf.global_variables_initializer())
 

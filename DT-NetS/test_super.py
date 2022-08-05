@@ -11,16 +11,16 @@ import os
 import numpy as np
 import scipy.io
 import tensorflow as tf
-import model_new_super
+import model_super
 import sys
 from matplotlib import pyplot as plt
 
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
 
-path = '/srv/beegfs02/scratch/sosrecon/data/test6'
-path_labels = '/srv/beegfs02/scratch/sosrecon/data/test6_labels'
-path_results = '/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/results/test/'
+path = 'path/to/test/images'
+path_labels = 'path/to/test/labels'
+path_results = 'path/to/results'
 
 N=32
 t = 1
@@ -60,7 +60,7 @@ create graph
 """
 
 image_size = [None, 1329, 253, 1]   
-interpolator = model_new_super.forward(image_size)
+interpolator = model_super.forward(image_size)
     
 saver = tf.train.Saver(max_to_keep=2)
 sess = tf.Session(config=config)
@@ -68,7 +68,7 @@ sess = tf.Session(config=config)
 init_from_saved_model = True
 
 if init_from_saved_model:
-    saver.restore(sess, "model/supervised6/model_15_100_1e-06_norm.ckpt")
+    saver.restore(sess, "path/to/.ckpt")
 else:
     sess.run(tf.global_variables_initializer())
     
