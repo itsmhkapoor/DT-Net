@@ -12,24 +12,24 @@ The network is trained and evaluated on a private dataset of beamformed RF frame
 
 ## Model
 2 versions of DT-Net are available 
-- DT-NetE (for unsupervised training) defined in `model_new.py`
+- DT-NetE (for unsupervised training) defined in `DT-NetE/model_unsuper.py`
 <p align="center">
   <img src="assets/unsuper_arch.jpg" width="700">
 </p>
 
-- DT-NetS (for supervised training) defined in `model_new_super.py`
+- DT-NetS (for supervised training) defined in `DT-NetS/model_super.py`
 <p align="center">
   <img src="assets/super_arch.jpg" width="700">
 </p>
 
 ## Training Approaches
 
-- `train_new.py` is unsupervised training with anisotropic LCC loss using middle channel.
-- `train_super.py` is supervised training using all 6 channels.
+- `DT-NetE/train_unsuper.py` is unsupervised training with anisotropic LCC loss using middle channel.
+- `DT-NetS/train_super.py` is supervised training using all 6 channels.
 
 The `norm_para.py` script was used for finding the normalization parameters of the dataset.
 
 ## Testing 
 
-- `test_new.py` is used for testing results using LCC loss (unsupervised).
-- `test_super.py` is used for supervised model (using pseudo displacement fields)
+- `DT-NetE/test_unsuper.py` is used for testing results using LCC loss (unsupervised).
+- `DT-NetS/test_super.py` is used for supervised model (using pseudo displacement fields)
