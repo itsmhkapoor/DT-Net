@@ -26,7 +26,7 @@ The network is trained and evaluated on a private dataset of beamformed RF frame
 
 ## Training Approaches
 
-- `DT-NetE/train_unsuper.py` is unsupervised training with anisotropic LCC loss using middle channel. The LCC loss is defined as:
+- `DT-NetE/train_unsuper.py` is unsupervised training with anisotropic LCC loss using middle channel. The LCC loss is defined as, where *I1* and *I2* are the two frames for displacement estimation, *g* is the Gaussian kernel and * denotes convolution:
 <p align="center">
   <img src="assets/lcc.png" width="500">
 </p>
