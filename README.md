@@ -43,9 +43,7 @@ The `norm_para.py` script was used for finding the normalization parameters of t
 ## Results
 
 The SoS reconstruction when using NCC and DT-Net in the displacement estimation step are compared in the following images. The reconstruction is quantified using SoS-RMSE (Root Mean Squared Error) and CNR (Contrast to Noise Ratio). 
-<p>
-  <img src="assets/10.png" width="300">
-</p>
-<p>
-  <img src="assets/14.png" width="300">
+<p align="center">
+  <img src="assets/10.png" width="400">
+  <img src="assets/14.png" width="400">
 </p>
