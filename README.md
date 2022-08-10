@@ -28,7 +28,7 @@ The network is trained and evaluated on a private dataset of beamformed RF frame
 
 - `DT-NetE/train_unsuper.py` is unsupervised training with anisotropic LCC loss using middle channel. The LCC loss is defined as:
 <p align="center">
-  <img src="assets/lcc.png" width="700">
+  <img src="assets/lcc.png" width="500">
 </p>
 
 - `DT-NetS/train_super.py` is supervised training using all 6 channels.
@@ -44,8 +44,8 @@ The `norm_para.py` script was used for finding the normalization parameters of t
 
 The SoS reconstruction when using NCC and DT-Net in the displacement estimation step are compared in the following images. The reconstruction is quantified using SoS-RMSE (Root Mean Squared Error) and CNR (Contrast to Noise Ratio). 
 <p>
-  <img src="assets/10.png" width="400">
+  <img src="assets/10.png" width="300">
 </p>
 <p>
-  <img src="assets/14.png" width="400">
+  <img src="assets/14.png" width="300">
 </p>
