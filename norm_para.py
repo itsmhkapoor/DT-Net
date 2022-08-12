@@ -10,7 +10,7 @@ import scipy.io
 import math
 import matplotlib.pyplot as plt
 # path to dataset for which 98% normalization needs to be performed
-path_train = '/srv/beegfs02/scratch/sosrecon/data/train_labels'
+path_train = 'path/to/dataset'
 N = 5220
 def comp_norm(path_train): 
     

@@ -7,7 +7,6 @@ mkapoor@student.ethz.ch
 
 
 import os
-
 import numpy as np
 import scipy.io
 import tensorflow as tf
@@ -60,6 +59,7 @@ test
 """          
 
 test_1,test_2 = readImages(path)
+# normalize
 test_1 = (test_1 - amin)/(amax - amin)
 test_2 = (test_2 - amin)/(amax - amin)
 

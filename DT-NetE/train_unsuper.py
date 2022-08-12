@@ -34,18 +34,22 @@ max_iter = iter_per_epoch * hm_epochs
 
 
 def ncc(x, y):
-  mean_x = tf.reduce_mean(x, [1,2,3], keep_dims=True)
-  mean_y = tf.reduce_mean(y, [1,2,3], keep_dims=True)
-  mean_x2 = tf.reduce_mean(tf.square(x), [1,2,3], keep_dims=True)
-  mean_y2 = tf.reduce_mean(tf.square(y), [1,2,3], keep_dims=True)
-  stddev_x = tf.reduce_sum(tf.sqrt(
-    mean_x2 - tf.square(mean_x)), [1,2,3], keep_dims=True)
-  stddev_y = tf.reduce_sum(tf.sqrt(
-    mean_y2 - tf.square(mean_y)), [1,2,3], keep_dims=True)
-  return tf.reduce_mean((x - mean_x) * (y - mean_y) / (stddev_x * stddev_y))
+    """
+    Computes Normalized Cross Correlation between x and y
+    """
+    mean_x = tf.reduce_mean(x, [1,2,3], keep_dims=True)
+    mean_y = tf.reduce_mean(y, [1,2,3], keep_dims=True)
+    mean_x2 = tf.reduce_mean(tf.square(x), [1,2,3], keep_dims=True)
+    mean_y2 = tf.reduce_mean(tf.square(y), [1,2,3], keep_dims=True)
+    stddev_x = tf.reduce_sum(tf.sqrt(
+                                    mean_x2 - tf.square(mean_x)), [1,2,3], keep_dims=True)
+    stddev_y = tf.reduce_sum(tf.sqrt(
+                                    mean_y2 - tf.square(mean_y)), [1,2,3], keep_dims=True)
+    return tf.reduce_mean((x - mean_x) * (y - mean_y) / (stddev_x * stddev_y))
 
 def _tf_fspecial_gauss(sizex, sizey, sigma):
-    """Function to mimic the 'fspecial' gaussian MATLAB function
+    """
+    Function to mimic the 'fspecial' gaussian MATLAB function
     """
     x_data, y_data = np.mgrid[-sizex//2 + 1:sizex//2 + 1, -sizey//2 + 1:sizey//2 + 1]
 
@@ -62,6 +66,9 @@ def _tf_fspecial_gauss(sizex, sizey, sigma):
     return g / tf.reduce_sum(g)
 
 def tf_lcc(img1, img2, mean_metric=True, sizex=155, sizey=5, sigma=1.5, deps=1e-4):
+    """
+    Computes Localized Cross Correlation between x and y
+    """
     window = _tf_fspecial_gauss(sizex, sizey, sigma) # window shape [sizex, sizey]
     
     mu1 = tf.nn.conv2d(img1, window, strides=[1,1,1,1], padding='VALID')

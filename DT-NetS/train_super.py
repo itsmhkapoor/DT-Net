@@ -37,7 +37,6 @@ path_val = 'path/to/val/images'
 path_labels = 'path/to/train/labels'
 path_val_labels = 'path/to/val/labels'
 path_model = 'path/to/save/model/ckpt'
-#model_dir = '/scratch_net/beaker/mkapoor/sem1/mfin-cycle-master/logs'
 
 # here shows you how to relate iterations to epochs
 iter_per_epoch = int(math.ceil(N/batch_size))
@@ -45,18 +44,22 @@ max_iter = iter_per_epoch * hm_epochs
 
 
 def ncc(x, y):
-  mean_x = tf.reduce_mean(x, [1,2,3], keep_dims=True)
-  mean_y = tf.reduce_mean(y, [1,2,3], keep_dims=True)
-  mean_x2 = tf.reduce_mean(tf.square(x), [1,2,3], keep_dims=True)
-  mean_y2 = tf.reduce_mean(tf.square(y), [1,2,3], keep_dims=True)
-  stddev_x = tf.reduce_sum(tf.sqrt(
-    mean_x2 - tf.square(mean_x)), [1,2,3], keep_dims=True)
-  stddev_y = tf.reduce_sum(tf.sqrt(
-    mean_y2 - tf.square(mean_y)), [1,2,3], keep_dims=True)
-  return tf.reduce_mean((x - mean_x) * (y - mean_y) / (stddev_x * stddev_y))
+    """
+    Computes Normalized Cross Correlation between x and y
+    """
+    mean_x = tf.reduce_mean(x, [1,2,3], keep_dims=True)
+    mean_y = tf.reduce_mean(y, [1,2,3], keep_dims=True)
+    mean_x2 = tf.reduce_mean(tf.square(x), [1,2,3], keep_dims=True)
+    mean_y2 = tf.reduce_mean(tf.square(y), [1,2,3], keep_dims=True)
+    stddev_x = tf.reduce_sum(tf.sqrt(
+                                    mean_x2 - tf.square(mean_x)), [1,2,3], keep_dims=True)
+    stddev_y = tf.reduce_sum(tf.sqrt(
+                                    mean_y2 - tf.square(mean_y)), [1,2,3], keep_dims=True)
+    return tf.reduce_mean((x - mean_x) * (y - mean_y) / (stddev_x * stddev_y))
 
 def _tf_fspecial_gauss(size, sigma):
-    """Function to mimic the 'fspecial' gaussian MATLAB function
+    """
+    Function to mimic the 'fspecial' gaussian MATLAB function
     """
     x_data, y_data = np.mgrid[-size//2 + 1:size//2 + 1, -size//2 + 1:size//2 + 1]
 
@@ -73,6 +76,9 @@ def _tf_fspecial_gauss(size, sigma):
     return g / tf.reduce_sum(g)
 
 def tf_lcc(img1, img2, mean_metric=True, size=11, sigma=1.5, deps=1e-4):
+    """
+    Computes Localized Cross Correlation between x and y
+    """
     window = _tf_fspecial_gauss(size, sigma) # window shape [size, size]
     
     mu1 = tf.nn.conv2d(img1, window, strides=[1,1,1,1], padding='VALID')

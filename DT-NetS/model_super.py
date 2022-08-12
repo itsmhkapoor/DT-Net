@@ -73,7 +73,6 @@ def upsample_layer(input_layer, w, b):
 def initial_weights():
     n_basic_convolution = 9  
     n_filters_convolution = [2,16,32,64,128,128,64,32,16,1]
-    # n_filters_convolution = [3,11,11,11,11,3]
     f_size = [17, 17, 13, 13, 7, 7, 5, 5, 1, 5, 5, 3, 3, 3, 3, 3, 3, 1]
     
     weights = []
