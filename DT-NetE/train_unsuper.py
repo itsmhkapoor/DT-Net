@@ -67,7 +67,7 @@ def _tf_fspecial_gauss(sizex, sizey, sigma):
 
 def tf_lcc(img1, img2, mean_metric=True, sizex=155, sizey=5, sigma=1.5, deps=1e-4):
     """
-    Computes Localized Cross Correlation between x and y
+    Computes Localized Cross Correlation between img1 and img2
     """
     window = _tf_fspecial_gauss(sizex, sizey, sigma) # window shape [sizex, sizey]
     
